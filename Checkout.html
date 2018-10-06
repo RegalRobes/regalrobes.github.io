@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv = "Content-Type" content = "text/html; charset = utf-8">
+<html lang = "en-US">
+<head><title>Checkout</title></head>
+
+<body>
+<script>
+const robeString = window.location.search;
+var styleNum = robeString[14] + robeString[15] + robeString[16] + robeString[17] + robeString[18] + robeString[19];
+var color = "";
+for (index = 27; index < robeString.length; index++) {
+    if (robeString[index] == "+"){
+        color += " ";
+    } else if ((robeString[index] == "%") && (robeString[index + 1] == "2") && (robeString[index + 2] == "6")) {
+        color += "&";
+        index += 2
+    } else {
+        color += robeString[index];
+    }
+}
+</script>
+
+<div align = "center">
+<h1>Regal Robes - Checkout</h1>
+<img id = "image 1" src = "" style = "width: 400px; height: 600px; display: inline-block; vertical-align: top">
+<img id = "image 2" src = "" style = "width: 400px; height: 600px; display: none; vertical-align: top">
+<form name = "checkout" onsubmit = "return submitForm()" style = "display: inline-block" align = "left"
+action = "https://www.paypal.com/cgi-bin/webscr" method = "post" target = "_top">
+    <h4>Product Details:</h4>
+    Style Number: <span id = "style number"></span><br><br>
+    Color: <span id = "color"></span><br><br>
+    <span id = "size"></span>
+    Price: <span id = "price"></span> (per unit)<br><br>
+    Quantity: <input name = "quantity" type = "number" min = "1" max = "100" value = "1" style = "width: 40px" required>
+    <h4>Shipping Address:</h4>
+    Country: United States<br><br>
+    <input type = "text" name = "state"  placeholder = "State" style = "width: 100px" required> <input type = "text" name = "city" placeholder = "City" style = "width: 100px" required><br><br>
+    <input type = "text" name = "zip code" placeholder = "Zip Code" style = "width: 60px" required> <input type = "text" name = "street address" placeholder = "Street Address" style = "width: 140px" required><br><br>
+    <input type = "hidden" name = "on1" value = "Address"><div style = "display: none"><input type = "text" name = "os1" value = "" readonly></div>
+    <br>
+    <input type = "hidden" name = "cmd" value = "_s-xclick">
+    <input type = "hidden" name = "hosted_button_id" value = "">
+    <div align = "center"><input type = "submit" value = "Buy" style = "width: 70px; height: 40px; font-weight: bold"></div>
+</form>
+</div>
+
+<style>
+body, h1, h4, input {
+    font-family: Times;
+}
+body {
+    background-image: url('Tile.png');
+    background-color: rgb(255, 250, 245);
+}
+h1, h4 {
+    color: rgb(5, 5, 20);
+    font-weight: 500;
+}
+input {
+    border-width: 1px;
+    border-color: black;
+}
+</style>
+
+<script>
+const sizeA = '<input type = "hidden" name = "on0" value = "Size"><div style = "display: none"><input type = "text" name = "os0" value = "" readonly></div>Size: <select name = "size"><option value = "none">Select</option><option value = "6">6</option><option value = "8">8</option><option value = "10">10</option><option value = "12">12</option><option value = "14">14</option><option value = "16">16</option><option value = "18">18</option><option value = "16W">16W</option><option value = "18W">18W</option><option value = "20W">20W</option><option value = "22W">22W</option><option value = "24W">24W</option><option value = "26W">26W</option><option value = "28W">28W</option><option value = "30W">30W</option></select><br><br>';
+const sizeB = '<input type = "hidden" name = "on0" value = "Size"><div style = "display: none"><input type = "text" name = "os0" value = "" readonly></div>Size: <select name = "size"><option value = "none">Select</option><option value = "S">S</option><option value = "M">M</option><option value = "L">L</option><option value = "XL">XL</option><option value = "1X">1X</option><option value = "2X">2X</option><option value = "3X">3X</option></select><br><br>';
+const sizeC = '<input type = "hidden" name = "on0" value = "Size"><div style = "display: none"><input type = "text" name = "os0" value = "" readonly></div>Size: <select name = "size"><option value = "none">Select</option><option value = "S/M">S/M</option><option value = "L/XL">L/XL</option><option value = "XXL/XXXL">XXL/XXXL</option></select><br><br>';
+const sizeD = '<input type = "hidden" name = "on0" value = "Size"><div style = "display: none"><input type = "text" name = "os0" value = "" readonly></div>Size: <select name = "size"><option value = "none">Select</option><option value = "M">M</option><option value = "L">L</option><option value = "XL">XL</option><option value = "1X">1X</option><option value = "2X">2X</option><option value = "3X">3X</option></select><br><br>';
+document.getElementById("style number").innerHTML = styleNum;
+document.getElementById("color").innerHTML = color;
+var shortColor = ((color == "Black") || (color == "Black & Gold")) ? "BLK" : (((color == "Purple") || (color == "Purple & Gold")) ? "PPL" : (((color == "White") || (color == "White & Gold")) ? "WHT" : ((color == "Red") ? "RED" : "unknown")));
+if (shortColor != "unknown") {
+    document.getElementById("image 1").src = styleNum + "/" + styleNum + " " + shortColor + ".jpg";
+}
+if (((styleNum == "RR9071") && ((color == "Black") || (color == "Red"))) || ((styleNum == "RR9081") && (color == "Purple"))) {
+    document.getElementById("image 2").style.display = "inline-block";
+    document.getElementById("image 2").src = styleNum + "/" + styleNum + " " + shortColor + " M.jpg";
+}
+if ((styleNum == "RR9091") && (color == "Purple & Gold")) {
+    document.getElementById("image 1").style.width = "271px";
+} else if ((styleNum == "RR9091") && (color == "White & Gold")) {
+    document.getElementById("image 1").style.width = "222px";
+} else if ((styleNum == "RR9501") && (color == "White")) {
+    document.getElementById("image 1").style.width = "341px";
+}
+if (styleNum != "RR9100") {
+    if ((styleNum == "RR9001") || (styleNum == "RR9501")) {
+        document.getElementById("size").innerHTML = sizeA;
+    } else if (styleNum == "RR9002") {
+        document.getElementById("size").innerHTML = sizeB;
+    } else if ((styleNum == "RR9071") || (styleNum == "RR9081")) {
+        document.getElementById("size").innerHTML = sizeC;
+    } else if (styleNum == "RR9091") {
+        document.getElementById("size").innerHTML = sizeD;
+    }
+    document.forms["checkout"]["size"].style.borderWidth = "1px";
+    document.forms["checkout"]["size"].style.borderColor = "black";
+}
+document.getElementById("price").innerHTML = ((styleNum == "RR9001") || (styleNum == "RR9091")) ? ("$99") : ((styleNum == "RR9002") ? ("$129") : (((styleNum == "RR9071") || (styleNum == "RR9081")) ? ("$69") : ((styleNum == "RR9501") ? ("$109") : ((styleNum == "RR9100") ? ("$27") : ("unknown")))));
+function submitForm() {
+    var validForm = true;
+    
+    var styleNum = document.getElementById("style number").innerHTML;
+    var color = document.getElementById("color").innerHTML;
+    
+    if (styleNum != "RR9100") {
+        var size = document.forms["checkout"]["size"].value;
+        if (size == "none") {
+            document.forms["checkout"]["size"].style.borderColor = "red";
+            validForm = false;
+        }
+        else {
+            document.forms["checkout"]["size"].style.borderColor = "black";
+            document.forms["checkout"]["os0"].value = size;
+        }
+    }
+    
+    var state = document.forms["checkout"]["state"].value;
+    var city = document.forms["checkout"]["city"].value;
+    var zipCode = document.forms["checkout"]["zip code"].value;
+    var streetAddress = document.forms["checkout"]["street address"].value;
+    
+    var states = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];
+    var validState = false;
+    for (index = 0; index < states.length; index++) {
+        if (state == states[index]) {
+            validState = true;
+            break;
+        }
+    }
+    if (!validState) {
+        document.forms["checkout"]["state"].style.borderColor = "red";
+        validForm = false;
+    } else {
+        document.forms["checkout"]["state"].style.borderColor = "black";
+    }
+    
+    if (zipCode.length != 5) {
+        document.forms["checkout"]["zip code"].style.borderColor = "red";
+        validForm = false;
+    } else if (((zipCode.charCodeAt(0) < 48) || (zipCode.charCodeAt(0) > 57)) || ((zipCode.charCodeAt(1) < 48) || (zipCode.charCodeAt(1) > 57)) || ((zipCode.charCodeAt(2) < 48) || (zipCode.charCodeAt(2) > 57)) || ((zipCode.charCodeAt(3) < 48) || (zipCode.charCodeAt(3) > 57)) || ((zipCode.charCodeAt(4) < 48) || (zipCode.charCodeAt(4) > 57))) {
+        document.forms["checkout"]["zip code"].style.borderColor = "red";
+        validForm = false;
+    } else {
+        document.forms["checkout"]["zip code"].style.borderColor = "black";
+    }
+    
+    if (!validForm) {
+        return false;
+    }
+    
+    document.forms["checkout"]["os1"].value = streetAddress + ", " + city + ", " + state + ", " + zipCode;
+    
+    if (styleNum == "RR9001") {
+        if (color == "Black & Gold") {
+            document.forms["checkout"]["hosted_button_id"].value = "BVLH3E7PTNF5S";
+        } else if (color == "Purple & Gold") {
+            document.forms["checkout"]["hosted_button_id"].value = "GHRLVCYCJ7HWW";
+        } else if (color == "White & Gold") {
+            document.forms["checkout"]["hosted_button_id"].value = "LGX23YGP9NNML";
+        }
+    } else if (styleNum == "RR9002") {
+        if (color == "Black & Gold") {
+            document.forms["checkout"]["hosted_button_id"].value = "UJSNMRFM98URA";
+        } else if (color == "Purple & Gold") {
+            document.forms["checkout"]["hosted_button_id"].value = "YHE3HJ8WW9B7N";
+        } else if (color == "White & Gold") {
+            document.forms["checkout"]["hosted_button_id"].value = "PRWSYFS9LEL4J";
+        }
+    } else if (styleNum == "RR9071") {
+        if (color == "Black") {
+            document.forms["checkout"]["hosted_button_id"].value = "YBGDR78ZT2VLE";
+        } else if (color == "Red") {
+            document.forms["checkout"]["hosted_button_id"].value = "HM5539UER75ZG";
+        } else if (color == "White") {
+            document.forms["checkout"]["hosted_button_id"].value = "SDXZ7GKZTPX2N";
+        }
+    } else if (styleNum == "RR9081") {
+        if (color == "Black") {
+            document.forms["checkout"]["hosted_button_id"].value = "RJJ88KR4397AY";
+        } else if (color == "Purple") {
+            document.forms["checkout"]["hosted_button_id"].value = "D6QWYEATRFL68";
+        } else if (color == "White") {
+            document.forms["checkout"]["hosted_button_id"].value = "FECTWSMH3KP8Q";
+        }
+    } else if (styleNum == "RR9091") {
+        if (color == "Black & Gold") {
+            document.forms["checkout"]["hosted_button_id"].value = "ARK9CB5PZHC8E";
+        } else if (color == "Purple & Gold") {
+            document.forms["checkout"]["hosted_button_id"].value = "9V39EJFPABC84";
+        } else if (color == "White & Gold") {
+            document.forms["checkout"]["hosted_button_id"].value = "ZHQLGF67WFZSG";
+        }
+    } else if (styleNum == "RR9501") {
+        if (color == "White") {
+            document.forms["checkout"]["hosted_button_id"].value = "9VXLB8SARERK2";
+        }
+    } else if (styleNum == "RR9100") {
+        if (color == "Red") {
+            document.forms["checkout"]["hosted_button_id"].value = "CGYY7NTTSW6UJ";
+        } else if (color == "Black") {
+            document.forms["checkout"]["hosted_button_id"].value = "DMWQET86RVPUW";
+        } else if (color == "Purple") {
+            document.forms["checkout"]["hosted_button_id"].value = "ABJ25D8BKZ3YL";
+        }
+    }
+    return true;
+}
+</script>
+</body>
+</html>

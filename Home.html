@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv = "Content-Type" content = "text/html; charset = utf-8">
+<html lang = "en-US">
+<head>
+    <title>Regal Robes</title>
+    <meta name = "keywords" content = "robes">
+    <meta name= "description" content= "regal robes">
+</head>
+
+<body>
+<h1 align = "center">Regal Robes</h1>
+
+<h2>RR9001</h2>
+<button onclick = "Checkout('RR9001', 'Black & Gold')"><img src = "RR9001/RR9001 BLK.jpg"><br>Black & Gold - $99</button>
+<button onclick = "Checkout('RR9001', 'Purple & Gold')"><img src = "RR9001/RR9001 PPL.jpg"><br>Purple & Gold - $99</button>
+<button onclick = "Checkout('RR9001', 'White & Gold')"><img src = "RR9001/RR9001 WHT.jpg"><br>White & Gold - $99</button>
+
+<h2>RR9002</h2>
+<button onclick = "Checkout('RR9002', 'Black & Gold')"><img src = "RR9002/RR9002 BLK.jpg"><br>Black & Gold - $129</button>
+<button onclick = "Checkout('RR9002', 'Purple & Gold')"><img src = "RR9002/RR9002 PPL.jpg"><br>Purple & Gold - $129</button>
+<button onclick = "Checkout('RR9002', 'White & Gold')"><img src = "RR9002/RR9002 WHT.jpg"><br>White & Gold - $129</button>
+
+<h2>RR9071</h2>
+<button style = "width: 430px" onclick = "Checkout('RR9071', 'Black')"><img src = "RR9071/RR9071 BLK.jpg"><img src = "RR9071/RR9071 BLK M.jpg" style = "width: 200px; height: 300px"><br>Black - $69</button>
+<button style = "width: 430px" onclick = "Checkout('RR9071', 'Red')"><img src = "RR9071/RR9071 RED.jpg"><img src = "RR9071/RR9071 RED M.jpg" style = "width: 200px; height: 300px"><br>Red - $69</button>
+<button onclick = "Checkout('RR9071', 'White')"><img src = "RR9071/RR9071 WHT.jpg"><br>White - $69</button>
+
+<h2>RR9081</h2>
+<button onclick = "Checkout('RR9081', 'Black')"><img src = "RR9081/RR9081 BLK.jpg"><br>Black - $69</button>
+<button style = "width: 430px" onclick = "Checkout('RR9081', 'Purple')"><img src = "RR9081/RR9081 PPL.jpg"><img src = "RR9081/RR9081 PPL M.jpg" style = "width: 200px; height: 300px"><br>Purple - $69</button>
+<button onclick = "Checkout('RR9081', 'White')"><img src = "RR9081/RR9081 WHT.jpg"><br>White - $69</button>
+
+<h2>RR9091</h2>
+<button onclick = "Checkout('RR9091', 'Black & Gold')"><img src = "RR9091/RR9091 BLK.jpg"><br>Black & Gold - $99</button>
+<button onclick = "Checkout('RR9091', 'Purple & Gold')"><img src = "RR9091/RR9091 PPL.jpg" style = "width: 135px"><br>Purple & Gold - $99</button>
+<button onclick = "Checkout('RR9091', 'White & Gold')"><img src = "RR9091/RR9091 WHT.jpg" style = "width: 111px"><br>White & Gold - $99</button>
+
+<h2>RR9501</h2>
+<button onclick = "Checkout('RR9501', 'White')"><img src = "RR9501/RR9501 WHT.jpg" style = "width: 171px"><br>White - $109</button>
+
+<h2>RR9100</h2>
+<button onclick = "Checkout('RR9100', 'Red')"><img src = "RR9100/RR9100 RED.jpg"><br>Red - $27</button>
+<button onclick = "Checkout('RR9100', 'Black')"><img src = "RR9100/RR9100 BLK.jpg"><br>Black - $27</button>
+<button onclick = "Checkout('RR9100', 'Purple')"><img src = "RR9100/RR9100 PPL.jpg"><br>Purple - $27</button>
+
+<style>
+body {
+    background-image: url('Tile.png');
+    background-color: rgb(255, 250, 245);
+}
+body, h1, h2, button {
+    font-family: Times;
+    color: rgb(5, 5, 20);
+}
+h1, h2 {
+    font-weight: 500;
+}
+button {
+    background-color: transparent;
+    width: 220px;
+    height: 340px;
+    border-width: 0px;
+    font-weight: bold;
+}
+img {
+    width: 200px;
+    height: 300px;
+}
+</style>
+
+<form name = "robe" style = "display: none" action = "Checkout.html" method = "get" target = "_self">
+    <input type = "text" name = "style number" value = "" readonly>
+    <input type = "text" name = "color" value = "" readonly>
+</form>
+
+<script>
+function Checkout(styleNum, color) {
+    document.forms["robe"]["style number"].value = styleNum;
+    document.forms["robe"]["color"].value = color;
+    document.forms["robe"].submit();
+}
+</script>
+
+</body>
+</html>
